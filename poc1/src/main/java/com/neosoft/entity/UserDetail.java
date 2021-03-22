@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 @Entity
 @Table(name = "userdetail")
 @Data
@@ -30,8 +33,10 @@ public class UserDetail {
 	@Column(name="pincode",length = 30, nullable = false)
 	private Long pincode;
 	@Column(name="dateofbirth",length = 10, nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
 	private Date dateofbirth;
 	@Column(name="Joiningdate",length = 20, nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
 	private Date Joiningdate;
 	@Column(name="active",length = 2, nullable = false)
 	private char active;
