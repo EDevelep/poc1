@@ -100,4 +100,59 @@ public class UserDetailServiceImpl implements UserDetailService {
 		return userdetail;
 	}
 
+	@Override
+	@Transactional
+	public List<UserDetail> findUsersByjdateofbirth(Date dateofbirth) {
+		List<UserDetail> dbUserDetails = userDetailRepo.findUsersBydateofbirth(dateofbirth);
+		if (Objects.isNull(dbUserDetails) || dbUserDetails.get(0).getActive() == 'N') {
+			throw new IllegalArgumentException(
+					"UserDetail  is  Not  Found for Given Date ");
+		}
+		return dbUserDetails;
+	}
+
+	@Override
+	@Transactional
+	public List<UserDetail> findUsersByjoiningdate(Date joiningdate) {
+		List<UserDetail> dbUserDetails = userDetailRepo.findUsersByjoiningdate(joiningdate);
+		if (Objects.isNull(dbUserDetails) || dbUserDetails.get(0).getActive() == 'N') {
+			throw new IllegalArgumentException(
+					"UserDetail  is  Not  Found for Given Date ");
+		}
+		return dbUserDetails;
+	}
+
+	@Override
+	@Transactional
+	public List<UserDetail> findUsersByusername(String username) {
+		List<UserDetail> dbUserDetails = userDetailRepo.findUsersByusername(username);
+		if (Objects.isNull(dbUserDetails) || dbUserDetails.get(0).getActive() == 'N') {
+			throw new IllegalArgumentException(
+					"UserDetail  is  Not  Found for Given Username ");
+		}
+		return dbUserDetails;
+	}
+
+	@Override
+	@Transactional
+	public List<UserDetail> findUsersBysurname(String surname) {
+		List<UserDetail> dbUserDetails = userDetailRepo.findUsersBysurname(surname);
+		if (Objects.isNull(dbUserDetails) || dbUserDetails.get(0).getActive() == 'N') {
+			throw new IllegalArgumentException(
+					"UserDetail  is  Not  Found for Given Surname ");
+		}
+		return dbUserDetails;
+	}
+
+	@Override
+	@Transactional
+	public List<UserDetail> findUsersBypincode(String pincode) {
+		List<UserDetail> dbUserDetails = userDetailRepo.findUsersBypincode(pincode);
+		if (Objects.isNull(dbUserDetails) || dbUserDetails.get(0).getActive() == 'N') {
+			throw new IllegalArgumentException(
+					"UserDetail  is  Not  Found for Given Surname ");
+		}
+		return dbUserDetails;
+	}
+
 }

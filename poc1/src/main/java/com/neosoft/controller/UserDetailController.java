@@ -75,6 +75,71 @@ public class UserDetailController {
 		}
 	}
 
+	@GetMapping(value = "/get/{pincode}")
+	public ResponseEntity<Response<List<UserDetail>>> findUsersBypincode(@PathVariable String pincode) {
+		try {
+			List<UserDetail> userdetail = userDetailService.findUsersBypincode(pincode);
+			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(new Response<>(null, StatusEnum.FAILURE, e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new UserDetailServerException(e.getMessage(), e);
+		}
+	}
+
+	@GetMapping(value = "/get/{surname}")
+	public ResponseEntity<Response<List<UserDetail>>> findUsersBysurname(@PathVariable String surname) {
+		try {
+			List<UserDetail> userdetail = userDetailService.findUsersBysurname(surname);
+			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(new Response<>(null, StatusEnum.FAILURE, e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new UserDetailServerException(e.getMessage(), e);
+		}
+	}
+
+	@GetMapping(value = "/get/{username}")
+	public ResponseEntity<Response<List<UserDetail>>> findUsersByusername(@PathVariable String username) {
+		try {
+			List<UserDetail> userdetail = userDetailService.findUsersByusername(username);
+			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(new Response<>(null, StatusEnum.FAILURE, e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new UserDetailServerException(e.getMessage(), e);
+		}
+	}
+
+	@GetMapping(value = "/get/{joiningdate}")
+	public ResponseEntity<Response<List<UserDetail>>> findUsersByjoiningdate(@PathVariable Date joiningdate) {
+		try {
+			List<UserDetail> userdetail = userDetailService.findUsersByjoiningdate(joiningdate);
+			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(new Response<>(null, StatusEnum.FAILURE, e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new UserDetailServerException(e.getMessage(), e);
+		}
+	}
+
+	@GetMapping(value = "/get/{dateofbirth}")
+	public ResponseEntity<Response<List<UserDetail>>> findUsersByjdateofbirth(@PathVariable Date dateofbirth) {
+		try {
+			List<UserDetail> userdetail = userDetailService.findUsersByjdateofbirth(dateofbirth);
+			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(new Response<>(null, StatusEnum.FAILURE, e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			throw new UserDetailServerException(e.getMessage(), e);
+		}
+	}
+
 	@DeleteMapping("/delete/{userId}")
 	public ResponseEntity<Response<String>> deleteUser(@PathVariable Long userId) {
 		try {
@@ -92,8 +157,8 @@ public class UserDetailController {
 	@PostMapping("/search/{value}")
 	public ResponseEntity<Response<List<UserDetail>>> serchUser(@PathVariable String value) {
 		try {
-			
-			//we can pass the dto also
+
+			// we can pass the dto also
 			List<UserDetail> userdetail = userDetailService.search(value);
 			return new ResponseEntity<>(new Response<>(userdetail, StatusEnum.SUCCESS, null), HttpStatus.OK);
 		} catch (IllegalArgumentException e) {

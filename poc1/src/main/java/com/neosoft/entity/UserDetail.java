@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,23 +24,40 @@ public class UserDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userid;
-	@Column(name="username",length = 10, nullable = false)
+
+	@Column(name="username",length = 10)
+	//we can @NotNull also 
+//	@NotBlank(message = "Username name is Mandatory field. Please provide user name")
 	private String username;
+	
+	//@NotBlank(message = "Emailid name is Mandatory field. Please provide Emailid ")
 	@Column(name="emailid",length = 20, nullable = false)
+	//@NotBlank(message = "User name is Mandatory field. Please provide user name")
 	private String emailid;
+	
 	@Column(name="password",length = 20, nullable = false)
+	//@NotBlank(message = "Password name is Mandatory field. Please provide Password")
 	private String password;
-	@Column(name="surname",length = 10, nullable = false)
+	
+	@Column(name="surname",length = 10)
+	@NotBlank(message = "Surname  is Mandatory field. Please provide Surname ")
 	private String surname;
-	@Column(name="pincode",length = 30, nullable = false)
+	
+	@Column(name="pincode",length = 30)
+	//@NotBlank(message = "Pincode  is Mandatory field. Please provide Pincode")
 	private Long pincode;
-	@Column(name="dateofbirth",length = 10, nullable = false)
+	
+	@Column(name="dateofbirth",length = 10)
 	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+	//@NotBlank(message = "Dateofbirth  is Mandatory field. Please provide Dateofbirth")
 	private Date dateofbirth;
-	@Column(name="Joiningdate",length = 20, nullable = false)
+	
+	@Column(name="Joiningdate",length = 20)
 	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+//	@NotBlank(message = "Joiningdate  Mandatory field. Please provide Joiningdate")
 	private Date Joiningdate;
-	@Column(name="active",length = 2, nullable = false)
+	
+	@Column(name="active",length = 2)
 	private char active;
 	
 	

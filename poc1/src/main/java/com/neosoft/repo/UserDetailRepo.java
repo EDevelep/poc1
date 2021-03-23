@@ -15,15 +15,20 @@ public interface UserDetailRepo extends JpaRepository<UserDetail, Long> {
 	UserDetail findUserByemailid(String emailid);
 
 	UserDetail findUsersByuserid(Long userid);
-
+	List<UserDetail> findUsersByusername(String username);
+	List<UserDetail> findUsersBysurname(String surname);
+	List<UserDetail> findUsersBypincode(String pincode);
 	List<UserDetail> findUserByuserid(Long userid);
 
 	@Query("SELECT u FROM UserDetail u WHERE CONCAT(u.username, u.surname,  u.pincode) LIKE %?1%")
 	List<UserDetail> search(String keyword);
-
+	//serch we 3 api 
 	@Query("select u  from UserDetail u order by joiningdate,dateofbirth")
 	List<UserDetail> searchDate(Date joiningdate, Date dateofbirth);
-
+	List<UserDetail> findUsersBydateofbirth(Date dateofbirth);
+	List<UserDetail> findUsersByjoiningdate(Date joiningdate);
+//two dif api 
+	
 	// List<UserDetail> searchDateBetweenjoiningdateAnddateofbirth(Date date);
 
 }
